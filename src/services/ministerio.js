@@ -1,4 +1,4 @@
-export default function GetMinisterio(){
+export  function GetMinisterio(){
 
 return fetch("http://localhost:8080/ministeriocontroller/ministerio")
 
@@ -16,7 +16,7 @@ return fetch("http://localhost:8080/ministeriocontroller/ministerio")
 })
 } 
 
-export default function GetOsde(){
+export  function GetOsde(){
 
     return fetch("http://localhost:8080/ministeriocontroller/osde")
     
@@ -34,7 +34,7 @@ export default function GetOsde(){
     })
     } 
 
-    export default function GetMunicipio(){
+    export  function GetMunicipio(){
 
         return fetch("http://localhost:8080/ministeriocontroller/municipio")
         
@@ -51,3 +51,9 @@ export default function GetOsde(){
         
         })
         } 
+
+        export default{
+            GetMinisterio,
+            GetOsde,
+            GetMunicipio
+        }
