@@ -9,7 +9,7 @@ import MinisterioService from './services/ministerio';
 function App() {
   
   const {ministerios}=useMinisterio()
-  console.log(ministerios);
+ 
   
   return (
     <>
