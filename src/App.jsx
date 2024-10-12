@@ -4,11 +4,11 @@ import './App.css'
 
 import useMinisterio from './hooks/useMinisterio'
 
-import Example  from './pages/home.jsx';
+import Example  from './pages/home';
 
 function App() {
   
-  const {ministerios}=useMinisterio()
+  //const {ministerios}=useMinisterio()
  
   
   return (
