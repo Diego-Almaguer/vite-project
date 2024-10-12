@@ -5,7 +5,7 @@ import './App.css'
 import useMinisterio from './hooks/useMinisterio'
 import ListOfMinist from './components/listOfMinist'
 import MinisterioService from './services/ministerio';
-import Component  from './pages/home.jsx';
+import Example  from './pages/home.jsx';
 
 function App() {
   
@@ -15,7 +15,7 @@ function App() {
   return (
     <>
       
-      <Comment/>
+      <Example/>
       
     </>
   )

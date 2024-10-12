@@ -1,9 +1,9 @@
 import React ,{ useState, useEffect } from "react";
-import GetMinisterio from "../services/ministerio.js";
+import GetMinisterio, { GetMunicipio, GetOsde } from "../services/ministerio.js";
 
 
 
-export const useMinisterio = () => {
+ const useMinisterio = () => {
     const [ministerios, setMinisterios] = useState([]);
     
     useEffect(() => {
@@ -19,11 +19,11 @@ export const useMinisterio = () => {
     return { ministerios }; // Retorna tanto el estado y su setter
 };
 
-export const useOsde = () => {
+ const useOsde = () => {
     const [osdes, setOsdes] = useState([]);
     
     useEffect(() => {
-        GetMinisterio()
+        GetOsde()
             .then(data => {
                 setOsdes(data); // Asegúrate de que setMinisterios existe aquí
             })
@@ -36,11 +36,11 @@ export const useOsde = () => {
 };
 
 
-export const useMunicipio = () => {
+ const useMunicipio = () => {
     const [municipios, setMunicipios] = useState([]);
     
     useEffect(() => {
-        GetMinisterio()
+        GetMunicipio()
             .then(data => {
                 setMunicipios(data); // Asegúrate de que setMinisterios existe aquí
             })
@@ -52,8 +52,4 @@ export const useMunicipio = () => {
     return { municipios }; // Retorna tanto el estado y su setter
 };
 
-export default {
-    useMinisterio,
-    useOsde,
-    useMunicipio
-}
+export default useMinisterio

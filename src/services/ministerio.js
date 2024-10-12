@@ -52,8 +52,4 @@ export  function GetOsde(){
         })
         } 
 
-        export default{
-            GetMinisterio,
-            GetOsde,
-            GetMunicipio
-        }
+        export default GetMinisterio

@@ -1,584 +1,180 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/GkNjwEC
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
-import { Button } from "@/components/ui/button"
-import { Table, TableHeader, TableRow, TableHead, TableBody, TableCell } from "@/components/ui/table"
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"
+import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
+import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 
-export default function Component() {
+const user = {
+  name: 'Tom Cook',
+  email: 'tom@example.com',
+  imageUrl:
+    'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+}
+const navigation = [
+  { name: 'Dashboard', href: '#', current: true },
+  { name: 'Team', href: '#', current: false },
+  { name: 'Projects', href: '#', current: false },
+  { name: 'Calendar', href: '#', current: false },
+  { name: 'Reports', href: '#', current: false },
+]
+const userNavigation = [
+  { name: 'Your Profile', href: '#' },
+  { name: 'Settings', href: '#' },
+  { name: 'Sign out', href: '#' },
+]
+
+function classNames(...classes) {
+  return classes.filter(Boolean).join(' ')
+}
+
+export default function Example() {
   return (
-    <div className="flex">
-      <aside className="sticky top-0 h-screen w-56 bg-gray-100 text-gray-800 p-4">
-        <div className="flex items-center mb-4 space-x-1">
-          <img
-            src="/placeholder.svg"
-            width="30"
-            height="30"
-            alt="Company Logo"
-            style={{ aspectRatio: "30/30", objectFit: "cover" }}
-          />
-          <h1 className="text-lg font-medium">Acme</h1>
-        </div>
-        <nav className="space-y-2">
-          <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-            <HomeIcon className="w-4 h-4" />
-            <span className="text-sm font-medium">Home</span>
-          </button>
-          <button className="w-full flex items-center space-x-2 bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-800">
-            <WalletIcon className="w-4 h-4" />
-            <span className="text-sm font-medium">Transactions</span>
-          </button>
-          <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-            <UsersIcon className="w-4 h-4" />
-            <span className="text-sm font-medium">Accounts</span>
-          </button>
-          <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-            <TicketIcon className="w-4 h-4" />
-            <span className="text-sm font-medium">Tax</span>
-          </button>
-        </nav>
-      </aside>
-      <main className="flex-grow p-6">
-        <div className="flex justify-between items-center mb-4">
-          <h1 className="text-lg font-medium">Transactions</h1>
-          <Button
-            type="button"
-            className="px-2 py-1 bg-gray-800 text-white rounded-lg flex items-center space-x-2 text-sm"
-          >
-            <DownloadIcon className="w-4 h-4" />
-            <span>Download</span>
-          </Button>
-        </div>
-        <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHead>Date</TableHead>
-              <TableHead>Description</TableHead>
-              <TableHead>Category</TableHead>
-              <TableHead className="text-right">Amount</TableHead>
-              <TableHead />
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            <TableRow>
-              <TableCell>Mar 12</TableCell>
-              <TableCell>WeWork</TableCell>
-              <TableCell>
-                <span className="px-2 py-1 bg-red-200 text-red-800 rounded-md">
-                  <TagIcon className="w-4 h-4 inline-block mr-1" />
-                  Office
-                </span>
-              </TableCell>
-              <TableCell className="text-right">$175.00</TableCell>
-              <TableCell>
-                <Popover>
-                  <PopoverTrigger>
-                    <Button
-                      type="button"
-                      className="px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
+    <>
+      {/*
+        This example requires updating your template:
+
+        ```
+        <html class="h-full bg-gray-100">
+        <body class="h-full">
+        ```
+      */}
+      <div className="min-h-full">
+        <Disclosure as="nav" className="bg-gray-800">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 items-center justify-between">
+              <div className="flex items-center">
+                <div className="flex-shrink-0">
+                  <img
+                    alt="Your Company"
+                    src="https://tailwindui.com/plus/img/logos/mark.svg?color=indigo&shade=500"
+                    className="h-8 w-8"
+                  />
+                </div>
+                <div className="hidden md:block">
+                  <div className="ml-10 flex items-baseline space-x-4">
+                    {navigation.map((item) => (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        aria-current={item.current ? 'page' : undefined}
+                        className={classNames(
+                          item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium',
+                        )}
+                      >
+                        {item.name}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div className="hidden md:block">
+                <div className="ml-4 flex items-center md:ml-6">
+                  <button
+                    type="button"
+                    className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  >
+                    <span className="absolute -inset-1.5" />
+                    <span className="sr-only">View notifications</span>
+                    <BellIcon aria-hidden="true" className="h-6 w-6" />
+                  </button>
+
+                  {/* Profile dropdown */}
+                  <Menu as="div" className="relative ml-3">
+                    <div>
+                      <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                        <span className="absolute -inset-1.5" />
+                        <span className="sr-only">Open user menu</span>
+                        <img alt="" src={user.imageUrl} className="h-8 w-8 rounded-full" />
+                      </MenuButton>
+                    </div>
+                    <MenuItems
+                      transition
+                      className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 transition focus:outline-none data-[closed]:scale-95 data-[closed]:transform data-[closed]:opacity-0 data-[enter]:duration-100 data-[leave]:duration-75 data-[enter]:ease-out data-[leave]:ease-in"
                     >
-                      <MoveVerticalIcon className="w-4 h-4" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-40">
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <FilePenIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Edit</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <ShareIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Share</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <DeleteIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Delete</span>
-                    </button>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Mar 13</TableCell>
-              <TableCell>IKEA</TableCell>
-              <TableCell>
-                <span className="px-2 py-1 bg-blue-200 text-blue-800 rounded-md">
-                  <TagIcon className="w-4 h-4 inline-block mr-1" />
-                  Home
-                </span>
-              </TableCell>
-              <TableCell className="text-right">$450.00</TableCell>
-              <TableCell>
-                <Popover>
-                  <PopoverTrigger>
-                    <Button
-                      type="button"
-                      className="px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
-                    >
-                      <MoveVerticalIcon className="w-4 h-4" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-40">
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <FilePenIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Edit</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <ShareIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Share</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <DeleteIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Delete</span>
-                    </button>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Mar 14</TableCell>
-              <TableCell>Home Depot</TableCell>
-              <TableCell>
-                <span className="px-2 py-1 bg-blue-200 text-blue-800 rounded-md">
-                  <TagIcon className="w-4 h-4 inline-block mr-1" />
-                  Home
-                </span>
-              </TableCell>
-              <TableCell className="text-right">$200.00</TableCell>
-              <TableCell>
-                <Popover>
-                  <PopoverTrigger>
-                    <Button
-                      type="button"
-                      className="px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
-                    >
-                      <MoveVerticalIcon className="w-4 h-4" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-40">
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <FilePenIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Edit</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <ShareIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Share</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <DeleteIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Delete</span>
-                    </button>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Mar 15</TableCell>
-              <TableCell>Burger King</TableCell>
-              <TableCell>
-                <span className="px-2 py-1 bg-green-200 text-green-800 rounded-md">
-                  <TagIcon className="w-4 h-4 inline-block mr-1" />
-                  Food
-                </span>
-              </TableCell>
-              <TableCell className="text-right">$15.00</TableCell>
-              <TableCell>
-                <Popover>
-                  <PopoverTrigger>
-                    <Button
-                      type="button"
-                      className="px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
-                    >
-                      <MoveVerticalIcon className="w-4 h-4" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-40">
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <FilePenIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Edit</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <ShareIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Share</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <DeleteIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Delete</span>
-                    </button>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Mar 16</TableCell>
-              <TableCell>WeWork</TableCell>
-              <TableCell>
-                <span className="px-2 py-1 bg-red-200 text-red-800 rounded-md">
-                  <TagIcon className="w-4 h-4 inline-block mr-1" />
-                  Office
-                </span>
-              </TableCell>
-              <TableCell className="text-right">$250.00</TableCell>
-              <TableCell>
-                <Popover>
-                  <PopoverTrigger>
-                    <Button
-                      type="button"
-                      className="px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
-                    >
-                      <MoveVerticalIcon className="w-4 h-4" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-40">
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <FilePenIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Edit</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <ShareIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Share</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <DeleteIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Delete</span>
-                    </button>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Mar 17</TableCell>
-              <TableCell>IKEA</TableCell>
-              <TableCell>
-                <span className="px-2 py-1 bg-blue-200 text-blue-800 rounded-md">
-                  <TagIcon className="w-4 h-4 inline-block mr-1" />
-                  Home
-                </span>
-              </TableCell>
-              <TableCell className="text-right">$350.00</TableCell>
-              <TableCell>
-                <Popover>
-                  <PopoverTrigger>
-                    <Button
-                      type="button"
-                      className="px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
-                    >
-                      <MoveVerticalIcon className="w-4 h-4" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-40">
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <FilePenIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Edit</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <ShareIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Share</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <DeleteIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Delete</span>
-                    </button>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Mar 18</TableCell>
-              <TableCell>Home Depot</TableCell>
-              <TableCell>
-                <span className="px-2 py-1 bg-blue-200 text-blue-800 rounded-md">
-                  <TagIcon className="w-4 h-4 inline-block mr-1" />
-                  Home
-                </span>
-              </TableCell>
-              <TableCell className="text-right">$100.00</TableCell>
-              <TableCell>
-                <Popover>
-                  <PopoverTrigger>
-                    <Button
-                      type="button"
-                      className="px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
-                    >
-                      <MoveVerticalIcon className="w-4 h-4" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-40">
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <FilePenIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Edit</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <ShareIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Share</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <DeleteIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Delete</span>
-                    </button>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
-            </TableRow>
-            <TableRow>
-              <TableCell>Mar 19</TableCell>
-              <TableCell>Burger King</TableCell>
-              <TableCell>
-                <span className="px-2 py-1 bg-green-200 text-green-800 rounded-md">
-                  <TagIcon className="w-4 h-4 inline-block mr-1" />
-                  Food
-                </span>
-              </TableCell>
-              <TableCell className="text-right">$20.00</TableCell>
-              <TableCell>
-                <Popover>
-                  <PopoverTrigger>
-                    <Button
-                      type="button"
-                      className="px-2 py-1 bg-transparent text-black hover:bg-gray-200 active:bg-gray-300 rounded"
-                    >
-                      <MoveVerticalIcon className="w-4 h-4" />
-                    </Button>
-                  </PopoverTrigger>
-                  <PopoverContent className="w-40">
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <FilePenIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Edit</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <ShareIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Share</span>
-                    </button>
-                    <button className="w-full flex items-center space-x-2 hover:bg-gray-200 active:bg-gray-300 py-2 px-2 rounded-lg text-gray-500">
-                      <DeleteIcon className="w-4 h-4" />
-                      <span className="text-sm font-medium">Delete</span>
-                    </button>
-                  </PopoverContent>
-                </Popover>
-              </TableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </main>
-    </div>
-  )
-}
+                      {userNavigation.map((item) => (
+                        <MenuItem key={item.name}>
+                          <a
+                            href={item.href}
+                            className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
+                          >
+                            {item.name}
+                          </a>
+                        </MenuItem>
+                      ))}
+                    </MenuItems>
+                  </Menu>
+                </div>
+              </div>
+              <div className="-mr-2 flex md:hidden">
+                {/* Mobile menu button */}
+                <DisclosureButton className="group relative inline-flex items-center justify-center rounded-md bg-gray-800 p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
+                  <span className="absolute -inset-0.5" />
+                  <span className="sr-only">Open main menu</span>
+                  <Bars3Icon aria-hidden="true" className="block h-6 w-6 group-data-[open]:hidden" />
+                  <XMarkIcon aria-hidden="true" className="hidden h-6 w-6 group-data-[open]:block" />
+                </DisclosureButton>
+              </div>
+            </div>
+          </div>
 
-function DeleteIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M20 5H9l-7 7 7 7h11a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2Z" />
-      <line x1="18" x2="12" y1="9" y2="15" />
-      <line x1="12" x2="18" y1="9" y2="15" />
-    </svg>
-  )
-}
+          <DisclosurePanel className="md:hidden">
+            <div className="space-y-1 px-2 pb-3 pt-2 sm:px-3">
+              {navigation.map((item) => (
+                <DisclosureButton
+                  key={item.name}
+                  as="a"
+                  href={item.href}
+                  aria-current={item.current ? 'page' : undefined}
+                  className={classNames(
+                    item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
+                    'block rounded-md px-3 py-2 text-base font-medium',
+                  )}
+                >
+                  {item.name}
+                </DisclosureButton>
+              ))}
+            </div>
+            <div className="border-t border-gray-700 pb-3 pt-4">
+              <div className="flex items-center px-5">
+                <div className="flex-shrink-0">
+                  <img alt="" src={user.imageUrl} className="h-10 w-10 rounded-full" />
+                </div>
+                <div className="ml-3">
+                  <div className="text-base font-medium leading-none text-white">{user.name}</div>
+                  <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
+                </div>
+                <button
+                  type="button"
+                  className="relative ml-auto flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                >
+                  <span className="absolute -inset-1.5" />
+                  <span className="sr-only">View notifications</span>
+                  <BellIcon aria-hidden="true" className="h-6 w-6" />
+                </button>
+              </div>
+              <div className="mt-3 space-y-1 px-2">
+                {userNavigation.map((item) => (
+                  <DisclosureButton
+                    key={item.name}
+                    as="a"
+                    href={item.href}
+                    className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                  >
+                    {item.name}
+                  </DisclosureButton>
+                ))}
+              </div>
+            </div>
+          </DisclosurePanel>
+        </Disclosure>
 
-
-function DownloadIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
-      <polyline points="7 10 12 15 17 10" />
-      <line x1="12" x2="12" y1="15" y2="3" />
-    </svg>
-  )
-}
-
-
-function FilePenIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12 22h6a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v10" />
-      <path d="M14 2v4a2 2 0 0 0 2 2h4" />
-      <path d="M10.4 12.6a2 2 0 1 1 3 3L8 21l-4 1 1-4Z" />
-    </svg>
-  )
-}
-
-
-function HomeIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
-      <polyline points="9 22 9 12 15 12 15 22" />
-    </svg>
-  )
-}
-
-
-function MoveVerticalIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <polyline points="8 18 12 22 16 18" />
-      <polyline points="8 6 12 2 16 6" />
-      <line x1="12" x2="12" y1="2" y2="22" />
-    </svg>
-  )
-}
-
-
-function ShareIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8" />
-      <polyline points="16 6 12 2 8 6" />
-      <line x1="12" x2="12" y1="2" y2="15" />
-    </svg>
-  )
-}
-
-
-function TagIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M12.586 2.586A2 2 0 0 0 11.172 2H4a2 2 0 0 0-2 2v7.172a2 2 0 0 0 .586 1.414l8.704 8.704a2.426 2.426 0 0 0 3.42 0l6.58-6.58a2.426 2.426 0 0 0 0-3.42z" />
-      <circle cx="7.5" cy="7.5" r=".5" fill="currentColor" />
-    </svg>
-  )
-}
-
-
-function TicketIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M2 9a3 3 0 0 1 0 6v2a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-2a3 3 0 0 1 0-6V7a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2Z" />
-      <path d="M13 5v2" />
-      <path d="M13 17v2" />
-      <path d="M13 11v2" />
-    </svg>
-  )
-}
-
-
-function UsersIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-      <circle cx="9" cy="7" r="4" />
-      <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-      <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-    </svg>
-  )
-}
-
-
-function WalletIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1" />
-      <path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4" />
-    </svg>
+        <header className="bg-white shadow">
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+          </div>
+        </header>
+        <main>
+          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
+        </main>
+      </div>
+    </>
   )
 }
