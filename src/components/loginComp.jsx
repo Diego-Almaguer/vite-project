@@ -18,11 +18,11 @@ export default function LoginComp() {
                params:{...newdata}
             }
         );
-        if (response.status === 200 && response!=null) {
-            alert("Login sucssesfuly")
+        if (response.status === 400 ) {
+            alert("Login error , ha ocurrido un error")
         }
         else{
-          alert("Valide los campos")
+          alert("Login sucsessfuly")
         }
         
         console.log(newdata);
@@ -98,9 +98,9 @@ export default function LoginComp() {
             </form>
   
             <p className="mt-10 text-center text-sm text-gray-500">
-              Not a member?{' '}
-              <a href="#" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
-                Start a 14 day free trial
+              No tiene una cuenta ?{' '}
+              <a href="/createUser" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500">
+                Crear Cuenta 
               </a>
             </p>
           </div>
