@@ -4,7 +4,7 @@ export default function LoginComp() {
     const [data,setData] = useState({username:"",password:""})
     const HandleInput=(e)=>{
         const {name,value}=e.target
-        setData({[name]:value})
+        setData({...data,[name]:value})
         console.log(data);
         
 
