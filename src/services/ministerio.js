@@ -1,19 +1,19 @@
 export  function GetMinisterio(){
 
-return fetch("http://localhost:8080/ministeriocontroller/ministerio")
+    return fetch("http://localhost:8080/ministeriocontroller/ministerio")
 
-.then((res)=>res.json())
-.then((res)=> {
-    const {data}=res
-    const ministerios = data.map(item=>{
-        const {id,nombre}=item
-        return {id,nombre}
+    .then((res)=>res.json())
+    .then((res)=> {
+        const {data}=res
+        const ministerios = data.map(item=>{
+            const {id,nombre}=item
+            return {id,nombre}
+        })
+        //console.log(data)
+        return ministerios
+        
+
     })
-    //console.log(data)
-    return ministerios
-    
-
-})
 } 
 
 export  function GetOsde(){
@@ -52,4 +52,8 @@ export  function GetOsde(){
         })
         } 
 
-        export default GetMinisterio
+        export default {
+            GetMinisterio,
+            GetOsde,
+            GetMunicipio
+        }

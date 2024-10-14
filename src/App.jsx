@@ -1,6 +1,7 @@
 //import { useState } from 'react'
 
 import './App.css'
+import LoginComp from './components/loginComp';
 
 import useMinisterio from './hooks/useMinisterio'
 
@@ -15,6 +16,7 @@ function App() {
     <>
       
       <Example/>
+      <LoginComp/>
       
     </>
   )
