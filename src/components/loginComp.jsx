@@ -5,29 +5,30 @@ export default function LoginComp() {
     const HandleInput=(e)=>{
         const {name,value}=e.target
         setData({...data,[name]:value})
-        console.log(data);
+        //console.log(data);
         
 
     }
 
     const HandleSubmmit = async(e)=>{
         e.preventDefault();
-        const response = await axios.post("http://localhost:8080/usercontroller/login",data,
+        const newdata = {username:data.username,password:data.password} 
+        const response = await axios.post("http://localhost:8080/usercontroller/login",null,
             {
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Accept': 'application/json'
-                  }
+               params:{...newdata}
             }
         );
-        if (response.status == OK && response!=null) {
+        if (response.status === 200 && response!=null) {
             alert("Login sucssesfuly")
         }
-        alert("Valide los campos")
-
+        else{
+          alert("Valide los campos")
+        }
+        
+        console.log(newdata);
     }
 
-    console.log(data);
+    
     
 
     return (
@@ -51,7 +52,7 @@ export default function LoginComp() {
                   <input
                     onChange={HandleInput}
                     id="username"
-                    name={data.username}
+                    name="username"
                     type="text"
                     value={data.username}
                     required
@@ -76,7 +77,7 @@ export default function LoginComp() {
                   <input
                     onChange={HandleInput}
                     id="password"
-                    name={data.password}
+                    name="password"
                     type="password"
                     required
                     value={data.password}
