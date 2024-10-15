@@ -93,7 +93,7 @@ export default function HomeComp({userId}) {
                       <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        <img alt="" src={user1.imageUrl} className="h-8 w-8 rounded-full" />
+                        <img alt="" src={profile.foto} className="h-8 w-8 rounded-full" />
                       </MenuButton>
                     </div>
                     <MenuItems
@@ -146,11 +146,11 @@ export default function HomeComp({userId}) {
             <div className="border-t border-gray-700 pb-3 pt-4">
               <div className="flex items-center px-5">
                 <div className="flex-shrink-0">
-                  <img alt="" src={user1.imageUrl} className="h-10 w-10 rounded-full" />
+                  <img alt="" src={profile.foto} className="h-10 w-10 rounded-full" />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium leading-none text-white">{user1.name}</div>
-                  <div className="text-sm font-medium leading-none text-gray-400">{user1.email}</div>
+                  <div className="text-base font-medium leading-none text-white">{profile.user.username}</div>
+                  <div className="text-sm font-medium leading-none text-gray-400">{profile.user.email}</div>
                 </div>
                 <button
                   type="button"
