@@ -1,9 +1,9 @@
 import React ,{ useState, useEffect } from "react";
-import GetProfile from "../services/getProfile";
+//import GetProfile from "../services/getProfile";
+import useBearStore from "../contexts/useContext";
 
 
-
- const useProfile = ({userId}) => {
+ /*const useProfile = ({userId}) => {
     const [profile, setProfile] = useState(null);
     
     useEffect(() => {
@@ -17,7 +17,18 @@ import GetProfile from "../services/getProfile";
     //console.log(profile);
 
     return { profile }; // Retorna tanto el estado y su setter
-};
+};*/
+
+const useProfile=({userId})=>{
+    const { profile, loadProfile ,user} = useBearStore();
+    useEffect(() => {
+        loadProfile(userId);
+      }, [userId]);
+      //const {user}=profile
+      //console.log(user);
+
+    return{profile,user}
+}
 
  
 
