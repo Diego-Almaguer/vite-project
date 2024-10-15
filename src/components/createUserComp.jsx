@@ -1,5 +1,7 @@
 import { useState } from 'react'
-import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
+import axios from 'axios'
+import { useNavigate  } from "react-router-dom";
+//import { PhotoIcon, UserCircleIcon } from '@heroicons/react/24/solid'
 const dataUser={
     username:"",
     password:"",
@@ -11,6 +13,7 @@ const dataUser={
 }
 export default function CreateUserComp() {
   const [data,setData] = useState(dataUser)
+  const navigate=useNavigate()
     const HandleInput=(e)=>{
         const {name,value}=e.target
         setData({...data,[name]:value})
@@ -21,16 +24,18 @@ export default function CreateUserComp() {
 
     const HandleSubmmit = async(e)=>{
         e.preventDefault();
-        const newdata = {...data,profile:{}} 
+        const newdata = {user:{...data},profile:{foto:null}} 
         const response = await axios.post("http://localhost:8080/usercontroller/create",newdata);
-        if (response.status === 400 ) {
+        if (response.response === 400 && response.response===500) {
             alert("Login error , ha ocurrido un error")
         }
         else{
-          alert("Login sucsessfuly")
+          alert("Usuario creado correctamente")
+          const {profileId}=response.data
+          navigate(`/${profileId}`)
         }
         
-        console.log(newdata);
+        
     }
 
 
@@ -183,16 +188,17 @@ export default function CreateUserComp() {
                   <div className="flex h-6 items-center">
                     <input
                       onChange={HandleInput}
-                      id="comments"
-                      name="comments"
+                      onClick={()=>{data.admin=true}}
+                      id="admin"
+                      name="admin"
                       type="checkbox"
                       value={data.admin}
                       className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600"
                     />
                   </div>
                   <div className="text-sm leading-6">
-                    <label htmlFor="comments" className="font-medium text-gray-900">
-                      Comments
+                    <label htmlFor="admin" className="font-medium text-gray-900">
+                      admin
                     </label>
                     <p className="text-gray-500">Get notified when someones posts a comment on a posting.</p>
                   </div>

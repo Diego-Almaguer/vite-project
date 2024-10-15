@@ -18,7 +18,7 @@ function App() {
     <BrowserRouter>
     <Routes>
       
-      <Route path='/:id' element={<Home />} />
+      <Route path='/:profileId' element={<Home />} />
       <Route path='/' element={<Login />} />
       <Route path='/createUser' element={<CreateUser />} />
       
