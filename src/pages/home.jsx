@@ -4,10 +4,10 @@ import {useParams} from 'react-router-dom'
 
 
 export default function Home() {
-  const {profileId} = useParams()
+  const {userId} = useParams()
   //console.log(profileId);
   
   return (
-    <HomeComp profileId={profileId}/>
+    <HomeComp userId={userId}/>
   )
 }

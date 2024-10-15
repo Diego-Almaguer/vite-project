@@ -1,6 +1,8 @@
 import { useState } from "react"
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 export default function LoginComp() {
+  const navigate = useNavigate()
     const [data,setData] = useState({username:"",password:""})
     const HandleInput=(e)=>{
         const {name,value}=e.target
@@ -23,9 +25,12 @@ export default function LoginComp() {
         }
         else{
           alert("Login sucsessfuly")
+          const{userId}=response.data
+          //console.log(userId);
+          navigate(`/${userId}`)
         }
         
-        console.log(newdata);
+       
     }
 
     

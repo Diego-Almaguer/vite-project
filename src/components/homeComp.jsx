@@ -2,7 +2,9 @@ import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuIt
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import axios from 'axios'
 import useProfile from '../hooks/useProfile'
-const user = {
+import { useEffect } from 'react'
+import useBearStore from '../contexts/useContext'
+const user1 = {
   name: 'Tom Cook',
   email: 'tom@example.com',
   imageUrl:
@@ -25,10 +27,14 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function HomeComp({profileId}) {
-
-  const {profile}=useProfile({profileId})
-  console.log(profile);
+export default function HomeComp({userId}) {
+  const { profile, loadProfile } = useBearStore();
+  useEffect(() => {
+    loadProfile(userId);
+  }, []);
+  console.log(profile.user.id);
+  
+  
   
   return (
     <>
@@ -87,7 +93,7 @@ export default function HomeComp({profileId}) {
                       <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                         <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
-                        <img alt="" src={user.imageUrl} className="h-8 w-8 rounded-full" />
+                        <img alt="" src={user1.imageUrl} className="h-8 w-8 rounded-full" />
                       </MenuButton>
                     </div>
                     <MenuItems
@@ -140,11 +146,11 @@ export default function HomeComp({profileId}) {
             <div className="border-t border-gray-700 pb-3 pt-4">
               <div className="flex items-center px-5">
                 <div className="flex-shrink-0">
-                  <img alt="" src={user.imageUrl} className="h-10 w-10 rounded-full" />
+                  <img alt="" src={user1.imageUrl} className="h-10 w-10 rounded-full" />
                 </div>
                 <div className="ml-3">
-                  <div className="text-base font-medium leading-none text-white">{user.name}</div>
-                  <div className="text-sm font-medium leading-none text-gray-400">{user.email}</div>
+                  <div className="text-base font-medium leading-none text-white">{user1.name}</div>
+                  <div className="text-sm font-medium leading-none text-gray-400">{user1.email}</div>
                 </div>
                 <button
                   type="button"

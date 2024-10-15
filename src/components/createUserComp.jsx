@@ -31,8 +31,8 @@ export default function CreateUserComp() {
         }
         else{
           alert("Usuario creado correctamente")
-          const {profileId}=response.data
-          navigate(`/${profileId}`)
+          
+          navigate('/')
         }
         
         
