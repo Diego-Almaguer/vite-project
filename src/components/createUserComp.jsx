@@ -96,13 +96,13 @@ export default function CreateUserComp() {
         </div>
 
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-          <p className="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">Informacion Personal</h2>
+          <p className="mt-1 text-sm leading-6 text-gray-600">Utilice una dirección permanente de Gmail donde pueda recibir correo.</p>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
             <div className="sm:col-span-3">
               <label htmlFor="first-name" className="block text-sm font-medium leading-6 text-gray-900">
-                Primer Nombre
+                Nombre
               </label>
               <div className="mt-2">
                 <input
@@ -136,7 +136,7 @@ export default function CreateUserComp() {
 
             <div className="sm:col-span-4">
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                Email address
+                Email 
               </label>
               <div className="mt-2">
                 <input
@@ -161,7 +161,7 @@ export default function CreateUserComp() {
                   id="rango"
                   name="rango"
                   value={data.rango}
-                  autoComplete="rango"
+                  autoComplete="Sub Teniente"
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
                 >
                   <option>Sub Teniente</option>
@@ -182,7 +182,7 @@ export default function CreateUserComp() {
 
           <div className="mt-10 space-y-10">
             <fieldset>
-              <legend className="text-sm font-semibold leading-6 text-gray-900">By Email</legend>
+              <legend className="text-sm font-semibold leading-6 text-gray-900">Es Administrador</legend>
               <div className="mt-6 space-y-6">
                 <div className="relative flex gap-x-3">
                   <div className="flex h-6 items-center">

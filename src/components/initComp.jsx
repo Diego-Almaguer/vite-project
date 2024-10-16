@@ -1,31 +1,49 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import axios from 'axios'
-import useProfile from '../hooks/useProfile'
+import { useState } from 'react'
+//import axios from 'axios'
+//import useProfile from '../hooks/useProfile'
+import { useNavigate } from 'react-router-dom'
+//import useBearStore from '../contexts/useContext'
 
 
-const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
-  { name: 'Reports', href: '#', current: false },
-]
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-]
+
+
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
+/*function Sign_Out() {
+  const {removeProfile}=useBearStore()
+  removeProfile()
+}*/
+
 export default function InitComp({profile,user}) {
-  //const {profile,user}=useProfile({userId})
-  //console.log(user);
+  const [currentUser,setCurrentUser]=useState({user})
+
+  const handleSignOut = () => {
+    
+    setCurrentUser(null);
+    localStorage.removeItem('user');
+    
+  };
+  //const navigate = useNavigate()
   
+  const navigation = [
+    { name: 'Dashboard', href:`/${user.id}`, current: window.history.length <=0 ? true : false},
+    { name: 'Inspectores', href: `/inspectores/${user.id}`, current: window.history.length <=0 ? true : false },
+    { name: 'Empresas', href: `/empresas/${user.id}`, current: window.history.length <=0 ? true : false },
+    { name: 'Calendar', href: '#', current: window.history.length <=0 ? true : false },
+    { name: 'Reports', href: '#', current: window.history.length <=0 ? true : false },
+  ]
   
+
+  const userNavigation = [
+    { name: 'Your Profile', href: '#' },
+    { name: 'Settings', href: '#' },
+    { name: 'Sign out', href: '#' },
+  ]
   
   return (
     <>
@@ -87,10 +105,16 @@ export default function InitComp({profile,user}) {
                       {userNavigation.map((item) => (
                         <MenuItem key={item.name}>
                           <a
+                            onClick={() => {
+                              if (item.name === 'Sign out') {
+                                handleSignOut()
+                              }
+                            }}
                             href={item.href}
                             className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                           >
                             {item.name}
+                            
                           </a>
                         </MenuItem>
                       ))}
@@ -161,14 +185,7 @@ export default function InitComp({profile,user}) {
           </DisclosurePanel>
         </Disclosure>
 
-        <header className="bg-white shadow">
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
-          </div>
-        </header>
-        <main>
-          <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">{/* Your content */}</div>
-        </main>
+        
       </div>
     </>
   )
