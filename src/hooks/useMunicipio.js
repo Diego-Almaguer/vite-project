@@ -1,17 +1,13 @@
-const useMunicipio = () => {
-    const [municipios, setMunicipios] = useState([]);
-    
+import { useEffect } from "react";
+import useBearStore from "../contexts/useContext";
+const useMunicipio=()=>{
+    const { municipio, loadMunicipios } = useBearStore();
     useEffect(() => {
-        GetMunicipio()
-            .then(data => {
-                setMunicipios(data); // Asegúrate de que setMinisterios existe aquí
-            })
-            .catch(error => console.error("Error al cargar los ministerios:", error));
-    }, [setMunicipios]);
+        loadMunicipios();
+      }, []);
+      //const {user}=profile
+      //console.log(user);
 
-    console.log(municipios);
-
-    return { municipios }; // Retorna tanto el estado y su setter
-};
-
+    return{municipio}
+}
 export default useMunicipio
