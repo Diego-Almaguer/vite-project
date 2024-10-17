@@ -4,8 +4,8 @@ import GetProfile from '../services/getProfile';
 import { GetMunicipio } from '../services/getMunicipio';
 
 const useBearStore = create((set) => ({
-  profile: {},
-  user:{},
+  profile: null,
+  user:null,
   municipio:[],
   
   loadMunicipios: async()=>{
@@ -24,7 +24,8 @@ const useBearStore = create((set) => ({
     try {
       const profile = await GetProfile({userId});
       const {user}=await GetProfile({userId})
-      
+      console.log('Profile:', profile);
+      console.log('User:', user);
       set({user:user});
       set({profile:profile} );
     } catch (error) {

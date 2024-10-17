@@ -1,23 +1,12 @@
 import { Disclosure, DisclosureButton, DisclosurePanel, Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
-//import axios from 'axios'
-//import useProfile from '../hooks/useProfile'
-import { useNavigate } from 'react-router-dom'
-//import useBearStore from '../contexts/useContext'
-
-
-
+//import { useNavigate } from 'react-router-dom'
 
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
-
-/*function Sign_Out() {
-  const {removeProfile}=useBearStore()
-  removeProfile()
-}*/
 
 export default function InitComp({profile,user}) {
   const [currentUser,setCurrentUser]=useState({user})
@@ -66,7 +55,7 @@ export default function InitComp({profile,user}) {
                       <a
                         key={item.name}
                         href={item.href}
-                        aria-current={item.current ? 'page' : undefined}
+                        //aria-current={item.current ? 'page' : undefined}
                         className={classNames(
                           item.current ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white',
                           'rounded-md px-3 py-2 text-sm font-medium',
@@ -90,6 +79,7 @@ export default function InitComp({profile,user}) {
                   </button>
 
                   {/* Profile dropdown */}
+                  
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <MenuButton className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
@@ -110,9 +100,11 @@ export default function InitComp({profile,user}) {
                                 handleSignOut()
                               }
                             }}
+                            
                             href={item.href}
                             className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                           >
+                            
                             {item.name}
                             
                           </a>
@@ -187,6 +179,7 @@ export default function InitComp({profile,user}) {
 
         
       </div>
+      
     </>
   )
 }

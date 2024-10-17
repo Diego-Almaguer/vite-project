@@ -23,7 +23,7 @@ const useProfile=({userId})=>{
     const { profile, loadProfile ,user} = useBearStore();
     useEffect(() => {
         loadProfile(userId);
-      }, []);
+      }, [userId]);
       //const {user}=profile
       //console.log(user);
 
