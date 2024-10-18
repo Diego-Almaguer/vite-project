@@ -8,9 +8,9 @@ import InitComp from './initComp'
 export default function HomeComp({profile,user}) {
   
   
-  if (!user) {
+  /*if (!user) {
     return <h1>hola mundo</h1>;
-  }
+  }*/
 
   return (
     <>

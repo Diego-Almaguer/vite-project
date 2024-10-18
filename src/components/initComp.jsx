@@ -8,7 +8,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function InitComp({profile,user}) {
+export default function InitComp({profile=null,user=null}) {
   const [currentUser,setCurrentUser]=useState({user})
 
   const handleSignOut = () => {
@@ -20,12 +20,12 @@ export default function InitComp({profile,user}) {
   //const navigate = useNavigate()
   
   const navigation = [
-    { name: 'Dashboard', href:`/${user.id}`, current: window.history.length <=0 ? true : false},
-    { name: 'Inspectores', href: `/inspectores/${user.id}`, current: window.history.length <=0 ? true : false },
-    { name: 'Empresas', href: `/empresas/${user.id}`, current: window.history.length <=0 ? true : false },
-    { name: 'Calendar', href: '#', current: window.history.length <=0 ? true : false },
-    { name: 'Reports', href: '#', current: window.history.length <=0 ? true : false },
-  ]
+    { name: 'Dashboard', href: `/${user?.id }`, current: window.history.length <= 0 ? true : false },
+    { name: 'Inspectores', href: `/inspectores/${user?.id }`, current: window.history.length <= 0 ? true : false },
+    { name: 'Empresas', href: `/empresas/${user?.id}`, current: window.history.length <= 0 ? true : false },
+    { name: 'Calendar', href: '#', current: window.history.length <= 0 ? true : false },
+    { name: 'Reports', href: '#', current: window.history.length <= 0 ? true : false },
+  ];
   
 
   const userNavigation = [
@@ -35,8 +35,9 @@ export default function InitComp({profile,user}) {
   ]
   
   return (
+    
     <>
-      
+    {(profile && user)?(<>
       <div className="min-h-full">
         <Disclosure as="nav" className="bg-gray-800">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -179,7 +180,7 @@ export default function InitComp({profile,user}) {
 
         
       </div>
-      
+      </>):( alert('debe iniciar sesion') )}
     </>
   )
 }
