@@ -10,6 +10,7 @@ import CreateInspectores from './components/createInspectores';
 import CreateEmpresas from './components/createEmpresas';
 
 
+
 function App() {
   
  
@@ -21,7 +22,7 @@ function App() {
     
     <BrowserRouter>
     <Routes>
-    
+      
       <Route path='/:userId' element={<Home />} />
       <Route path='/' element={<Login />} />
       <Route path='/createUser' element={<CreateUser />} />
