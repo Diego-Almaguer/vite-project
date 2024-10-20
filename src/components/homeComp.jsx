@@ -5,7 +5,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import InitComp from './initComp'
 
 
-export default function HomeComp({profile,user}) {
+export default function HomeComp({profile,user,removeProfile}) {
   
   
   /*if (!user) {
@@ -14,7 +14,7 @@ export default function HomeComp({profile,user}) {
 
   return (
     <>
-      <InitComp profile={profile} user={user} />
+      <InitComp profile={profile} user={user} removeProfile={removeProfile}/>
       
     </>
   );

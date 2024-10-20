@@ -8,16 +8,16 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function InitComp({profile=null,user=null}) {
-  const [currentUser,setCurrentUser]=useState({user})
+export default function InitComp({profile=null,user=null,removeProfile}) {
+  
 
   const handleSignOut = () => {
     
-    setCurrentUser(null);
+    removeProfile()
     localStorage.removeItem('user');
     
   };
-  //const navigate = useNavigate()
+  
   
   const navigation = [
     { name: 'Dashboard', href: `/${user?.id }`, current: window.history.length <= 0 ? true : false },
@@ -98,11 +98,13 @@ export default function InitComp({profile=null,user=null}) {
                           <a
                             onClick={() => {
                               if (item.name === 'Sign out') {
-                                handleSignOut()
+                                //removeProfile()
+                                //handleSignOut()
+                                alert('hola mundo')
                               }
                             }}
                             
-                            href={item.href}
+                            //href={item.href}
                             className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100"
                           >
                             
@@ -165,6 +167,13 @@ export default function InitComp({profile=null,user=null}) {
               <div className="mt-3 space-y-1 px-2">
                 {userNavigation.map((item) => (
                   <DisclosureButton
+                  onClick={() => {
+                    if (item.name === 'Sign out') {
+                      //handleSignOut()
+                      //removeProfile()
+                      alert('hola mundo')
+                    }
+                  }}
                     key={item.name}
                     as="a"
                     href={item.href}
@@ -224,7 +233,7 @@ export default function InitComp({profile=null,user=null}) {
                   </button>
                   <a
                           
-                    href='#'
+                    href='/'
                     
                     className='text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium'
                         

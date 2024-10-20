@@ -20,14 +20,14 @@ import useBearStore from "../contexts/useContext";
 };*/
 
 const useProfile=({userId})=>{
-    const { profile, loadProfile ,user} = useBearStore();
+    const { profile, loadProfile ,user ,removeProfile} = useBearStore();
     useEffect(() => {
         loadProfile(userId);
       }, [userId]);
       //const {user}=profile
       //console.log(user);
 
-    return{profile,user}
+    return{profile,user,removeProfile}
 }
 
  

@@ -1,17 +1,13 @@
-const useOsde = () => {
-    const [osdes, setOsdes] = useState([]);
-    
+import { useEffect } from "react";
+import useBearStore from "../contexts/useContext";
+const useOsde=()=>{
+    const { osde, loadOsdes } = useBearStore();
     useEffect(() => {
-        GetOsde()
-            .then(data => {
-                setOsdes(data); // Asegúrate de que setMinisterios existe aquí
-            })
-            .catch(error => console.error("Error al cargar los ministerios:", error));
-    }, [setOsdes]);
+        loadOsdes();
+      }, []);
+      //const {user}=profile
+      //console.log(user);
 
-    console.log(osdes);
-
-    return { osdes }; // Retorna tanto el estado y su setter
-};
-
+    return{osde}
+}
 export default useOsde

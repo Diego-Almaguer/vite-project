@@ -2,12 +2,25 @@ import { create } from 'zustand';
 import useProfile from '../hooks/useProfile';
 import GetProfile from '../services/getProfile';
 import { GetMunicipio } from '../services/getMunicipio';
+import { GetOsde } from '../services/getOsde';
 
 const useBearStore = create((set) => ({
   profile: null,
   user:null,
   municipio:[],
-  
+  osde:[],
+
+  loadOsdes: async()=>{
+    try {
+      const osdes= await GetOsde()
+      
+      set({osde:osdes})
+    } catch (error) {
+      console.error('Error loading municipios:', error);
+    }
+
+  },
+
   loadMunicipios: async()=>{
     try {
       const municipios= await GetMunicipio()
@@ -33,7 +46,8 @@ const useBearStore = create((set) => ({
     }
   },
 
-  removeProfile: () => set({ profile: {} }),
+  removeProfile: () => set((state) => ({ profile: state.profile })),
+  
 }));
 
 export default useBearStore;
