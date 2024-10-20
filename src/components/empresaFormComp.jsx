@@ -24,7 +24,7 @@ export default function EmpresaFormComp({municipio,osde}) {
             alert("Login error , ha ocurrido un error")
         }
         else{
-          alert("Inspector registrado correctamente")
+          alert("Empresa registrada correctamente")
           //window.location.reload()
           
         }
@@ -39,7 +39,7 @@ export default function EmpresaFormComp({municipio,osde}) {
     <form onSubmit={HandleSubmmit}>
       <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8">
         <div className="border-b border-gray-900/10 pb-12">
-          <h2 className="text-base font-semibold leading-7 text-gray-900">Registrar Inspector</h2>
+          <h2 className="text-base font-semibold leading-7 text-gray-900">Registrar Empresa</h2>
           <p className="mt-1 text-sm leading-6 text-gray-600">
             This information will be displayed publicly so be careful what you share.
           </p>
@@ -60,7 +60,7 @@ export default function EmpresaFormComp({municipio,osde}) {
                     name="nombre"
                     type="text"
                     value={nombre}
-                    placeholder="diego"
+                    //placeholder="diego"
                     required
                     
                     className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6"
