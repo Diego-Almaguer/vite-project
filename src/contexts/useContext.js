@@ -1,14 +1,40 @@
 import { create } from 'zustand';
-import useProfile from '../hooks/useProfile';
+
 import GetProfile from '../services/getProfile';
 import { GetMunicipio } from '../services/getMunicipio';
 import { GetOsde } from '../services/getOsde';
+import GetEntidad from '../services/getEntidad';
+import GetInspector from '../services/getInspect';
 
 const useBearStore = create((set) => ({
   profile: null,
   user:null,
   municipio:[],
   osde:[],
+  entidades:[],
+  inspectores:[],
+
+  loadInspectores: async()=>{
+    try {
+      const inspects= await GetInspector()
+      
+      set({inspectores:inspects})
+    } catch (error) {
+      console.error('Error loading municipios:', error);
+    }
+
+  },
+
+  loadEntidades: async()=>{
+    try {
+      const entidads= await GetEntidad()
+      
+      set({entidades:entidads})
+    } catch (error) {
+      console.error('Error loading municipios:', error);
+    }
+
+  },
 
   loadOsdes: async()=>{
     try {

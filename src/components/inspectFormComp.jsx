@@ -9,7 +9,7 @@ const rangoimp=[
 ]
 export default function InspectFormComp({municipio}) {
   const [rango,setRango]=useState("Sub Teniente")
-  const [municipios,setMunicipio]=useState("1")
+  const [municipios,setMunicipio]=useState(1)
     const [data,setData] = useState({
       ci:"",
       nombre:"",
@@ -167,7 +167,7 @@ export default function InspectFormComp({municipio}) {
               </label>
               <div className="mt-2">
                 <select
-                 onChange={(e)=>setMunicipio(parseInt(e.target.value))}
+                 onChange={(e)=>setMunicipio(e.target.value)}
                   id="municipio"
                   name="municipio"
                   defaultValue= {municipios}

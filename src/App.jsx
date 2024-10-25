@@ -8,6 +8,7 @@ import Login from './pages/login';
 import NavigationControls from './components/navigationButton';
 import CreateInspectores from './components/createInspectores';
 import CreateEmpresas from './components/createEmpresas';
+import CreateReport from './components/createReport';
 
 
 
@@ -28,6 +29,7 @@ function App() {
       <Route path='/createUser' element={<CreateUser />} />
       <Route path='/inspectores/:userId' element={<CreateInspectores />} />
       <Route path='/empresas/:userId' element={<CreateEmpresas />} />
+      <Route path='/reports/:userId' element={<CreateReport />} />
     </Routes>
     </BrowserRouter>
    

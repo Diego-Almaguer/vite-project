@@ -24,7 +24,7 @@ export default function InitComp({profile=null,user=null,removeProfile}) {
     { name: 'Inspectores', href: `/inspectores/${user?.id }`, current: window.history.length <= 0 ? true : false },
     { name: 'Empresas', href: `/empresas/${user?.id}`, current: window.history.length <= 0 ? true : false },
     { name: 'Calendar', href: '#', current: window.history.length <= 0 ? true : false },
-    { name: 'Reports', href: '#', current: window.history.length <= 0 ? true : false },
+    { name: 'Reports', href: `/reports/${user?.id}`, current: window.history.length <= 0 ? true : false },
   ];
   
 
